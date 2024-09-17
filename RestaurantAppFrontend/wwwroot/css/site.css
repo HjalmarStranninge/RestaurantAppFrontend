@@ -26,10 +26,61 @@ body {
 }
 
 .header-background {
-    height: 70vh;
+    height: 60vh;
     background-image: url('/Resources/restaurant2.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
+
+.header-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2); 
+    z-index: 1; 
+}
+
+.header-background > * {
+    position: relative;
+    z-index: 2; 
+}
+
+.desc-wrapper{
+    color: white;
+    margin: 50px;
+}
+
+.main-title{
+    color:white;
+    font-size: 50px;
+    font-weight: bold;
+    padding-top:3rem;
+    margin
+}
+
+.main-navbar{
+    padding: 0; 
+}
+
+.text-center {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+}
+
+.text-center p {
+    font-size:1.5rem;
+    font-style:italic;
+}
+
+.navbar-nav .nav-link {
+    transition: color 0.3s ease, background-color 0.3s ease; 
+}
+
+.navbar-nav .nav-link:hover {
+    color: #808080 !important;
+}
+
 
