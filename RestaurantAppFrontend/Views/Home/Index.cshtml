@@ -1,14 +1,16 @@
-﻿<div class="header-background">
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
 
-    @{
-        ViewData["Title"] = "Home Page";
-    }
+@{
+    string fileContent = ViewData["FileContent"] as string;
+}
 
+<div class="header-background">
     <div class="text-center">
         <h1 class="main-title">Byte Stockholm</h1>
         <p class="secondary-title">Arenavägen 61 - Globen</p>
     </div>
-
 </div>
 
 <div class="opening-hours-container">
@@ -43,16 +45,12 @@
             <p class="opening-hours-list-item">Varmt Välkommna!</p>
         </li>
     </ul>
-
 </div>
 
 <div class="divider-container">
     <div class="divider"></div>
 </div>
 
-@{
-    string fileContent = ViewData["FileContent"] as string;
-}
 
 <div class="info-container">
     <h2 class="info-header">Arenavägen 61</h2>
