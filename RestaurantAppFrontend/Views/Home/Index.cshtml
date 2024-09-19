@@ -1,8 +1,79 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿<div class="header-background">
+
+    @{
+        ViewData["Title"] = "Home Page";
+    }
+
+    <div class="text-center">
+        <h1 class="main-title">Byte Stockholm</h1>
+        <p class="secondary-title">Arenavägen 61 - Globen</p>
+    </div>
+
+</div>
+
+<div class="opening-hours-container">
+    <h2 class="welcome-header">Välkommen till Byte Stockholm</h2>
+    <ul class="opening-hours-list">
+        <li class="opening-hours-list-item">
+            <h6 class="opening-hours-header">
+                Mån - Tors:<h6 />
+                <p class="text-body-secondary"> 11.30 - 14.00 & 17.00 - 23:00</p>
+        </li>
+        <li class="opening-hours-list-item">
+            <h6 class="opening-hours-header">
+                Fredag:<h6 />
+                <p class="text-body-secondary"> 11.30 - Sent</p>
+        </li>
+        <li class="opening-hours-list-item">
+            <h6 class="opening-hours-header">
+                Lördag:<h6 />
+                <p class="text-body-secondary"> 16:30 - Sent</p>
+        </li>
+        <li class="opening-hours-list-item">
+            <h6 class="opening-hours-header">
+                Söndag:<h6 />
+                <p class="text-body-secondary"> Stangt</p>
+        </li>
+        <li class="opening-hours-list-item">
+            <h6 class="opening-hours-header">
+                Åldersgräns:<h6 />
+                <p class="text-body-secondary"> 23 År</p>
+        </li>
+        <li class="opening-hours-list-item">
+            <p class="opening-hours-list-item">Varmt Välkommna!</p>
+        </li>
+    </ul>
+
+</div>
+
+<div class="divider-container">
+    <div class="divider"></div>
+</div>
+
+@{
+    string fileContent = ViewData["FileContent"] as string;
 }
 
-<div class="text-center">
-    <h1 class="main-title">Byte Stockholm</h1>
-    <p>Arenavägen 61 - Globen</p>
+<div class="info-container">
+    <h2 class="info-header">Arenavägen 61</h2>
+    <div class="text-container">
+        <p class="info">@fileContent</p>
+    </div>
 </div>
+
+<div class="menu-card-container">
+    <div class="menu-card">
+        <p>MenuItem</p>
+    </div>
+    <div class="menu-card">
+        <p>MenuItem</p>
+    </div>
+    <div class="menu-card">
+        <p>MenuItem</p>
+    </div>
+</div>
+
+<div class="divider-container">
+    <div class="divider"></div>
+</div>
+

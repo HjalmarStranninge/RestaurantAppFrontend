@@ -8,6 +8,7 @@ namespace RestaurantAppFrontend.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -15,6 +16,11 @@ namespace RestaurantAppFrontend.Controllers
 
         public IActionResult Index()
         {
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "C:\\Users\\Hjalm\\source\\repos\\RestaurantAppFrontend\\RestaurantAppFrontend\\wwwroot\\Resources\\info.txt");
+
+            string fileContent = System.IO.File.ReadAllText(filePath);
+
+            ViewData["FileContent"] = fileContent;
             return View();
         }
 
