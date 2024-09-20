@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using Newtonsoft.Json;
 using RestaurantAppFrontend.Models;
 using System.Diagnostics;
 
@@ -27,12 +28,13 @@ namespace RestaurantAppFrontend.Controllers
             string fileContent = System.IO.File.ReadAllText(filePath);
             ViewData["FileContent"] = fileContent;
 
-            var response = await _httpClient.GetAsync($"{_baseUri}/getallmenuitems");  
+            var response = await _httpClient.GetAsync($"{_baseUri}getallmenuitems");  
 
             var json = await response.Content.ReadAsStringAsync();
 
+            var menuItems = JsonConvert.DeserializeObject<List<MenuItem>>(json);
 
-            return View();
+            return View(menuItems);
         }
 
         public IActionResult Privacy()
