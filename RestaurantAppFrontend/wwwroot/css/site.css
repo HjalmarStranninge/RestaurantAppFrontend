@@ -28,6 +28,10 @@ body {
     background-color: #f8f9fa;
 }
 
+.navbar-toggler{
+    border-color:transparent;
+}
+
 .header-background {
     height: 60vh;
     background-image: url('/Resources/restaurant2.jpg');
