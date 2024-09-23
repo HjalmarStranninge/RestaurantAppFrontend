@@ -3,7 +3,7 @@
 }
 
 @{
-    string fileContent = ViewData["FileContent"] as string;
+    string fileContent = ViewData["FileContent"] as string ?? string.Empty;
 }
 
 @model List<MenuItem>;
@@ -20,28 +20,33 @@
     <ul class="opening-hours-list">
         <li class="opening-hours-list-item">
             <h6 class="opening-hours-header">
-                Mån - Tors:<h6 />
-                <p class="text-body-secondary"> 11.30 - 14.00 & 17.00 - 23:00</p>
+                Mån - Tors:
+            </h6>
+            <p class="text-body-secondary opening-hours-secondary"> 11.30 - 14.00 & 17.00 - 23:00</p>
         </li>
         <li class="opening-hours-list-item">
             <h6 class="opening-hours-header">
-                Fredag:<h6 />
-                <p class="text-body-secondary"> 11.30 - Sent</p>
+                Fredag:
+            </h6>
+            <p class="text-body-secondary opening-hours-secondary"> 11.30 - Sent</p>
         </li>
         <li class="opening-hours-list-item">
             <h6 class="opening-hours-header">
-                Lördag:<h6 />
-                <p class="text-body-secondary"> 16:30 - Sent</p>
+                Lördag:
+            </h6>
+            <p class="text-body-secondary opening-hours-secondary"> 16:30 - Sent</p>
         </li>
         <li class="opening-hours-list-item">
             <h6 class="opening-hours-header">
-                Söndag:<h6 />
-                <p class="text-body-secondary"> Stangt</p>
+                Söndag:
+            </h6>
+            <p class="text-body-secondary opening-hours-secondary"> Stängt</p>
         </li>
         <li class="opening-hours-list-item">
             <h6 class="opening-hours-header">
-                Åldersgräns:<h6 />
-                <p class="text-body-secondary"> 23 År</p>
+                Åldersgräns:
+            </h6>
+            <p class="text-body-secondary opening-hours-secondary"> 23 År</p>
         </li>
         <li class="opening-hours-list-item">
             <p class="opening-hours-list-item">Varmt Välkommna!</p>
@@ -52,7 +57,6 @@
 <div class="divider-container">
     <div class="divider"></div>
 </div>
-
 
 <div class="info-container">
     <h2 class="info-header">Arenavägen 61</h2>
@@ -65,7 +69,7 @@
     @foreach (var item in Model)
     {
         // Set the ImageUrl property based on the Id
-        item.ImageUrl = Url.Content($"~/Resources/menu-item-{item.Id}.jpg");
+        item.ImageUrl = Url.Content($"~/Resources/item-{item.Id}.jpg");
 
         if (item.Id == 5 || item.Id == 8 || item.Id == 11)
         {
@@ -73,7 +77,6 @@
                 <img class="menu-item-image" src="@item.ImageUrl" alt="@item.Name" />
                 <h1 class="menu-tag">@item.Name</h1>
             </div>
-
         }
     }
 </div>
@@ -82,3 +85,17 @@
     <div class="divider"></div>
 </div>
 
+@section Scripts {
+    <script>
+        window.addEventListener('scroll', function () {
+            var header = document.querySelector('.header-background');
+            var headerHeight = header.offsetHeight;
+            var offset = 200;
+            if (window.scrollY > (headerHeight - offset)) {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+            }
+        });
+    </script>
+}
