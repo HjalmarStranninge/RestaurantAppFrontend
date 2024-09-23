@@ -2,19 +2,76 @@
 
 <div class="menu-container">
     <div class="menu-wrapper">
+
         <div class="menu-header">
-            <h1 class="menu-header-text">MENU</h1>
+            <h1 class="menu-header-text">THE BYTE EXPERIENCE</h1>
         </div>
+
+
         <div class="menu-card-wrapper">
             <div class="appetizer-container card bg-secondary mb-3">
+                <div class="card-header">Appetizers</div>
+                <div class="menu-card-content">
+                    @foreach (var item in Model)
+                    {
+                        if (item.IsAppetizer)
+                        {
+                            <h4 class="menu-card-title">@item.Name</h4>
+                            <p class="menu-card-text">@item.Description </p>
+                            <p class="price">@item.Price :-</p>
+                        }
+                    }
+                </div>
+                       
             </div>
             <div class="main-course-container card text-white bg-primary mb-3">
+                <div class="card-header">Main Courses</div>
+                <div class="menu-card-content">
+                    @foreach (var item in Model)
+                    {
+                        if (item.IsMainCourse)
+                        {
+                            <h4 class="menu-card-title">@item.Name</h4>
+                            <p class="menu-card-text">@item.Description </p>
+                            <p class="price">@item.Price :-</p>
+                        }
+                    }
+                </div>
             </div>
             <div class="dessert-container card bg-secondary mb-3">
+                <div class="card-header">Deserts</div>
+                <div class="menu-card-content">
+                    @foreach (var item in Model)
+                    {
+                        if (item.IsDesert)
+                        {
+                            <h4 class="menu-card-title">@item.Name</h4>
+                            <p class="menu-card-text">@item.Description </p>
+                            <p class="price">@item.Price :-</p>
+                        }
+                    }
+                </div>
             </div>
             <div class="drinks-container card bg-secondary mb-3">
+                <div class="card-header">Cocktails</div>
+                <div class="menu-card-content">
+                    @foreach (var item in Model)
+                    {
+                        if (item.IsCocktail)
+                        {
+                            <h4 class="menu-card-title">@item.Name</h4>
+                            <p class="menu-card-text">@item.Description </p>
+                            <p class="price">@item.Price :-</p>
+                        }
+                    }
+                </div>
             </div>
         </div>
-        
+        <div class="divider-container">
+            <div class="divider"></div>
+        </div>
     </div>
+
 </div> 
+
+
