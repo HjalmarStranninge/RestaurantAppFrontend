@@ -24,11 +24,12 @@ namespace RestaurantAppFrontend.Controllers
         public async Task<IActionResult> Index()
         {
             // Fetching a long string from a txt file and putting it in a ViewData
-            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "C:\\Users\\Hjalm\\source\\repos\\RestaurantAppFrontend\\RestaurantAppFrontend\\wwwroot\\Resources\\info.txt");
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(),
+                "C:\\Users\\Hjalm\\source\\repos\\RestaurantAppFrontend\\RestaurantAppFrontend\\wwwroot\\Resources\\info.txt");
             string fileContent = System.IO.File.ReadAllText(filePath);
             ViewData["FileContent"] = fileContent;
 
-            var response = await _httpClient.GetAsync($"{_baseUri}getallmenuitems");  
+            var response = await _httpClient.GetAsync($"{_baseUri}getallmenuitems");
 
             var json = await response.Content.ReadAsStringAsync();
 
