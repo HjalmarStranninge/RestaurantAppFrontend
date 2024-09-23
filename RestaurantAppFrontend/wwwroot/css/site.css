@@ -240,6 +240,7 @@ body {
     width: 100vw;
     height: auto;
     padding: 20px;
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 
@@ -257,6 +258,7 @@ body {
 .menu-header-text {
     font-weight: 900;
     font-size: 100px;
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .menu-card-wrapper {
@@ -321,15 +323,14 @@ body {
 .dark-mode {
     background-color: black;
     color: white;
-}
-
-body {
     transition: background-color 0.5s ease, color 0.5s ease;
 }
+
 
 .dark-mode {
     background-color: black;
     color: white;
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .dark-mode .menu-card {
@@ -345,6 +346,17 @@ body {
     color: white;
     transition: color 0.5s ease;
 }
+
+.dark-mode .menu-container {
+    background-color: black;
+    color: white;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+.dark-mode .menu-header-text {
+    color: white ;
+    transition: color 0.5s ease;
+}
+
 
 .dark-mode .opening-hours-secondary {
     color: lightgray !important;
