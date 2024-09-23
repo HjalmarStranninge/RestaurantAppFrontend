@@ -1,9 +1,11 @@
 ﻿@{
-    var isMenuPage = ViewData["Title"] == "Menu"; 
+    var isMenuPage = ViewData["Title"] == "Menu" || ViewData["Title"] == "Admin";
+    var isAdminPage = ViewData["Title"] == "Admin"; // Add a flag for admin page
 }
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,52 +14,75 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="icon" type="image/x-icon" href="~/Resources/logo.ico" />
 </head>
+
 <body>
     <header>
-        <nav id="main-navbar" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark main-navbar @(isMenuPage ? "menu-navbar" : "")">
+        <nav id="main-navbar"
+            class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark main-navbar @(isMenuPage ? "menu-navbar" : "") @(isAdminPage ? "admin-navbar" : "")">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     <img src="~/Resources/logo.png" alt="Byte" style="height: 50px;" />
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Bookings</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Menu" asp-action="Index">Menu</a>
-                        </li>
-                    </ul>
+                    @if (isAdminPage)
+                    {
+                        <!-- Admin-specific navbar -->
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="btn btn-secondary logout-button" asp-area="" asp-controller="Home"
+                                    asp-action="Index">Log
+                                    Out</a>
+                            </li>
+                        </ul>
+                    }
+
+                    else
+                    {
+                        <!-- Regular navbar content -->
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home"
+                                    asp-action="Privacy">Bookings</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Menu" asp-action="Index">Menu</a>
+                            </li>
+                        </ul>
+                    }
                 </div>
             </div>
         </nav>
     </header>
 
-    <main role="main" class="desc-wrapper">
+    <main role="main" class="desc-wrapper @(isAdminPage ? "admin-wrapper" : "")">
         @RenderBody()
     </main>
 
-    <footer class="border-top footer text-muted">
-        <div class="footer-wrapper">   
-            <div class="container">
-                &copy; 2024 - Byte - <a class="privacy"
-                    asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    @if (!isAdminPage)
+    {
+        <footer class="border-top footer text-muted">
+            <div class="footer-wrapper">
+                <div class="container">
+                    &copy; 2024 - Byte - <a class="privacy" asp-area="" asp-controller="Home"
+                        asp-action="Privacy">Privacy</a>
+                </div>
+                <a asp-controller="Admin" asp-action="Index" class="btn btn-light admin-button">Admin Login</a>
             </div>
-            <button type="button" class="btn btn-light admin-button">Admin Login</button>
-        </div>
-        
-    </footer>
+        </footer>
+    }
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>
