@@ -19,7 +19,6 @@ html {
 }
 
 body {
-    margin-bottom: 60px;
     display: flex;
     flex-direction: column;
 }
@@ -30,6 +29,32 @@ body {
 
 .navbar-toggler {
     border-color: transparent;
+}
+
+.footer-wrapper{
+    display:flex;
+    align-items:center;
+    height:80px;
+}
+
+.privacy{
+    color:white;
+}
+
+.admin-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px; 
+    width: auto; 
+    padding: 0 10px; 
+    border-radius: 5px; 
+    font-size: calc(10px + 0.5vw); 
+    margin-right: 2rem;
+    white-space: nowrap; 
+    background-color: black;
+    color:white;
+    font-weight:lighter;
 }
 
 .header-background {
@@ -47,21 +72,21 @@ body {
 }
 
 
-    .header-background::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 60vh;
-        background-color: rgba(0, 0, 0, 0.2);
-        z-index: 1;
-    }
+.header-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
 
-    .header-background > * {
-        position: relative;
-        z-index: 2;
-    }
+.header-background > * {
+    position: relative;
+    z-index: 2;
+}
 
 
 .main-title {
