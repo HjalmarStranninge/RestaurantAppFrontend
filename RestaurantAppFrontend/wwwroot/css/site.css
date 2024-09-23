@@ -9,7 +9,11 @@ html {
     }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
@@ -31,30 +35,30 @@ body {
     border-color: transparent;
 }
 
-.footer-wrapper{
-    display:flex;
-    align-items:center;
-    height:80px;
+.footer-wrapper {
+    display: flex;
+    align-items: center;
+    height: 80px;
 }
 
-.privacy{
-    color:white;
+.privacy {
+    color: white;
 }
 
 .admin-button {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 40px; 
-    width: auto; 
-    padding: 0 10px; 
-    border-radius: 5px; 
-    font-size: calc(10px + 0.5vw); 
+    height: 40px;
+    width: auto;
+    padding: 0 10px;
+    border-radius: 5px;
+    font-size: calc(10px + 0.5vw);
     margin-right: 2rem;
-    white-space: nowrap; 
+    white-space: nowrap;
     background-color: black;
-    color:white;
-    font-weight:lighter;
+    color: white;
+    font-weight: lighter;
 }
 
 .header-background {
@@ -83,7 +87,7 @@ body {
     z-index: 1;
 }
 
-.header-background > * {
+.header-background>* {
     position: relative;
     z-index: 2;
 }
@@ -377,8 +381,9 @@ body {
     color: white;
     transition: background-color 0.5s ease, color 0.5s ease;
 }
+
 .dark-mode .menu-header-text {
-    color: white ;
+    color: white;
     transition: color 0.5s ease;
 }
 
@@ -404,12 +409,12 @@ body {
 
 @media (max-width: 767px) {
     .menu-header-text {
-        font-size: 50px; 
-        text-align:center;
+        font-size: 50px;
+        text-align: center;
     }
 
-    .main-title{
-        margin-top:5rem;
+    .main-title {
+        margin-top: 5rem;
     }
 }
 
@@ -422,3 +427,39 @@ body {
     background: black;
     transition: background-color 0.5s ease;
 }
+
+/* Admin styling*/
+.admin-wrapper {
+    display: flex;
+}
+
+.admin-sidebar {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    padding:0;
+    background-color: #E5E5E5;
+    
+}
+
+.admin-navbar {
+    margin-left: 250px;
+    background-color: #14213D;
+}
+
+.logout-button{
+    margin-right:200px;
+}
+
+.sidebar-header{
+    height:152px;
+    width: 100%;
+    background-color: black;
+}
+
+.sidebar-item{
+    margin:0;
+}
+
