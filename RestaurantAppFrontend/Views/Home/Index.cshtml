@@ -97,5 +97,19 @@
                 document.body.classList.remove('dark-mode');
             }
         });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var navbar = document.getElementById('main-navbar');
+            var navbarToggler = document.querySelector('.navbar-toggler');
+
+            navbarToggler.addEventListener('click', function () {
+                var isExpanded = navbarToggler.getAttribute('aria-expanded') === 'true';
+                if (isExpanded) {
+                    navbar.classList.add('bg-black');
+                } else {
+                    navbar.classList.remove('bg-black');
+                }
+            });
+        });
     </script>
 }

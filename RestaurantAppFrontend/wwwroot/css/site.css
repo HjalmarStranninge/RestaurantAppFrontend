@@ -107,26 +107,26 @@ body {
     z-index: 3;
     background: transparent;
     padding: 0.5rem 1rem;
+    transition: background-color 0.5s ease;
 }
-
 
 
 .text-center {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-    .text-center p {
-        font-size: 1.5rem;
-        font-style: italic;
-    }
+.text-center p {
+    font-size: 1.5rem;
+    font-style: italic;
+}
 
 .navbar-nav .nav-link {
     transition: color 0.3s ease, background-color 0.3s ease;
 }
 
-    .navbar-nav .nav-link:hover {
-        color: #808080 !important;
-    }
+.navbar-nav .nav-link:hover {
+    color: #808080 !important;
+}
 
 .opening-hours-container {
     display: flex;
@@ -407,4 +407,18 @@ body {
         font-size: 50px; 
         text-align:center;
     }
+
+    .main-title{
+        margin-top:5rem;
+    }
+}
+
+.main-navbar.bg-transparent {
+    background: transparent;
+    transition: background-color 0.5s ease;
+}
+
+.main-navbar.bg-black {
+    background: black;
+    transition: background-color 0.5s ease;
 }
