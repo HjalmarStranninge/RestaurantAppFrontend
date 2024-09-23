@@ -401,3 +401,10 @@ body {
     background-color: black;
     color: white;
 }
+
+@media (max-width: 767px) {
+    .menu-header-text {
+        font-size: 50px; 
+        text-align:center;
+    }
+}
