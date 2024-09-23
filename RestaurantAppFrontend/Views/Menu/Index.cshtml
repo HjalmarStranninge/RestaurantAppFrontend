@@ -1,13 +1,14 @@
 ﻿@model List<MenuItem>;
 
+@{
+    ViewData["Title"] = "Menu";
+}
+
 <div class="menu-container">
     <div class="menu-wrapper">
-
         <div class="menu-header">
             <h1 class="menu-header-text">THE BYTE EXPERIENCE</h1>
         </div>
-
-
         <div class="menu-card-wrapper">
             <div class="appetizer-container card bg-secondary mb-3">
                 <div class="card-header">Appetizers</div>
@@ -22,7 +23,6 @@
                         }
                     }
                 </div>
-                       
             </div>
             <div class="main-course-container card text-white bg-primary mb-3">
                 <div class="card-header">Main Courses</div>
@@ -71,7 +71,4 @@
             <div class="divider"></div>
         </div>
     </div>
-
-</div> 
-
-
+</div>

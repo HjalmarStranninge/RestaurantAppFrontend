@@ -1,21 +1,20 @@
 ﻿@{
-    var isMenuView = ViewContext.RouteData.Values["controller"].ToString() == "Menu" && ViewContext.RouteData.Values["action"].ToString() == "Index";
+    var isMenuPage = ViewData["Title"] == "Menu"; 
 }
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> - Byte</title>
+    <title>@ViewData["Title"] - Byte</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/RestaurantAppFrontend.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="icon" type="image/x-icon" href="~/Resources/logo.ico" />
 </head>
-
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark @(isMenuView ? "bg-menu" : "bg-transparent") main-navbar">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark main-navbar @(isMenuPage ? "menu-navbar" : "")">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     <img src="~/Resources/logo.png" alt="Byte" style="height: 50px;" />

@@ -28,37 +28,40 @@ body {
     background-color: #f8f9fa;
 }
 
-.navbar-toggler{
-    border-color:transparent;
+.navbar-toggler {
+    border-color: transparent;
 }
 
 .header-background {
     height: 60vh;
     background-image: url('/Resources/restaurant2.jpg');
-    position: relative;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    display:flex;
+    display: flex;
     flex-direction: column;
-    justify-content:center;
-}
-
-.header-background::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60vh;
-    background-color: rgba(0, 0, 0, 0.2);
+    justify-content: center;
     z-index: 1;
+    position: relative;
+    margin-top: -110px;
 }
 
-.header-background > * {
-    position: relative;
-    z-index: 2;
-}
+
+    .header-background::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 60vh;
+        background-color: rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    .header-background > * {
+        position: relative;
+        z-index: 2;
+    }
 
 
 .main-title {
@@ -68,42 +71,44 @@ body {
     padding-top: 3rem;
 }
 
-.secondary-title{
-    color:white;
-
+.secondary-title {
+    color: white;
 }
+
 .main-navbar {
-    position: absolute; 
+    position: fixed;
     top: 0;
     width: 100%;
-    z-index: 3; 
-    background: transparent; 
-    padding: 0.5rem 1rem; 
+    z-index: 3;
+    background: transparent;
+    padding: 0.5rem 1rem;
 }
+
+
 
 .text-center {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.text-center p {
-    font-size: 1.5rem;
-    font-style: italic;
-}
+    .text-center p {
+        font-size: 1.5rem;
+        font-style: italic;
+    }
 
 .navbar-nav .nav-link {
     transition: color 0.3s ease, background-color 0.3s ease;
 }
 
-.navbar-nav .nav-link:hover {
-    color: #808080 !important;
-}
+    .navbar-nav .nav-link:hover {
+        color: #808080 !important;
+    }
 
 .opening-hours-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    margin-top: 130px;
+    margin-top: 100px;
     text-align: center;
 }
 
@@ -118,9 +123,17 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
     width: 100%;
     padding: 0.5rem;
     height: 2rem;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+.opening-hours-secondary {
+    margin-top: 0.4rem;
+    font-size: 12px;
 }
 
 .opening-hours-header {
@@ -152,6 +165,7 @@ body {
     flex-direction: column;
     align-items: center;
     height: 30vh;
+    margin-top: 5rem;
 }
 
 .text-container {
@@ -172,6 +186,7 @@ body {
 
 .menu-card {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 280px;
@@ -180,22 +195,27 @@ body {
     margin: 1rem;
     padding: 0.5rem;
     box-sizing: border-box;
-    position:relative;
+    position: relative;
+    text-align: center;
 }
 
-.menu-item-image{
+.menu-tag {
+    align-content: center;
+    position: absolute;
+    color: white;
+    z-index: 2;
+    font-size: 25px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.menu-item-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.menu-tag {
-    align-content:center;
-    position: absolute; 
-    color: white; 
-    z-index: 2; 
-    font-size: 25px;
-}
+
 @media (min-width: 768px) {
     .menu-card {
         width: calc(50% - 2rem);
@@ -216,22 +236,22 @@ body {
     display: flex;
     justify-content: center;
     background-color: white;
-    flex:1;
-    height: calc(100vh - 60px);
+    flex: 1;
     width: 100vw;
-    margin-top: 75px;
-    overflow:auto;
+    height: auto;
+    padding: 20px;
 }
+
 
 .menu-wrapper {
     width: 85vw;
-    height:100%;
+    height: 100%;
 }
 
 .menu-header {
     display: flex;
     justify-content: center;
-    margin: 4rem 0 4rem;
+    margin: 7rem 0 4rem;
 }
 
 .menu-header-text {
@@ -242,52 +262,105 @@ body {
 .menu-card-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto auto; /* Use auto to let rows adjust based on content */
+    grid-template-rows: auto auto auto;
     gap: 1rem;
     width: 100%;
     margin-bottom: 2rem;
 }
+
 .appetizer-container {
     grid-column: 1 / 2;
-    grid-row: 1 / 2; 
-    width: 100%; 
+    grid-row: 1 / 2;
+    width: 100%;
 }
 
 .main-course-container {
-    grid-column: 2 / 3; 
-    grid-row: 1 / 3; 
-    width: 100%; 
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+    width: 100%;
 }
 
 .dessert-container {
-    grid-column: 1 / 2; 
-    grid-row: 2 / 3; 
-    width: 100%; 
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    width: 100%;
 }
 
 .drinks-container {
-    grid-column: 1 / 3; 
+    grid-column: 1 / 3;
     grid-row: 3 / 4;
-    width: 100%; 
-    margin-bottom:2rem;
+    width: 100%;
+    margin-bottom: 2rem;
 }
 
-.menu-card-content{
-    padding:1rem;
+.menu-card-content {
+    padding: 1rem;
 }
 
-.menu-card-header{
-    font-weight:bolder;
-}
-.menu-card-text{
-    font-style:italic;
+.menu-card-header {
+    font-weight: bolder;
 }
 
-.price{
-    font-weight:bold;
+.menu-card-text {
+    font-style: italic;
 }
 
-.card-header{
-    font-size:30px;
-    font-weight:bolder;
+.price {
+    font-weight: bold;
+}
+
+.card-header {
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+body {
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.dark-mode {
+    background-color: black;
+    color: white;
+}
+
+body {
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.dark-mode {
+    background-color: black;
+    color: white;
+}
+
+.dark-mode .menu-card {
+    background-color: black;
+    color: white;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.dark-mode .welcome-header,
+.dark-mode .opening-hours-header,
+.dark-mode .info-header,
+.dark-mode .container {
+    color: white;
+    transition: color 0.5s ease;
+}
+
+.dark-mode .opening-hours-secondary {
+    color: lightgray !important;
+    transition: color 0.5s ease;
+}
+
+.menu-page .main-navbar {
+    background-color: black;
+    color: white;
+}
+
+.menu-page .navbar-nav .nav-link {
+    color: white;
+}
+
+.menu-navbar {
+    background-color: black;
+    color: white;
 }
