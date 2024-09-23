@@ -66,19 +66,24 @@
 </div>
 
 <div class="menu-card-container">
-    @foreach (var item in Model)
-    {
-        // Set the ImageUrl property based on the Id
-        item.ImageUrl = Url.Content($"~/Resources/item-{item.Id}.jpg");
 
-        if (item.Id == 5 || item.Id == 8 || item.Id == 11)
+    @if (Model != null)
+    {
+        @foreach (var item in Model)
         {
-            <div class="menu-card">
-                <img class="menu-item-image" src="@item.ImageUrl" alt="@item.Name" />
-                <h1 class="menu-tag">@item.Name</h1>
-            </div>
+            // Set the ImageUrl property based on the Id
+            item.ImageUrl = Url.Content($"~/Resources/item-{item.Id}.jpg");
+
+            if (item.Id == 5 || item.Id == 8 || item.Id == 11)
+            {
+                <div class="menu-card">
+                    <img class="menu-item-image" src="@item.ImageUrl" alt="@item.Name" />
+                    <h1 class="menu-tag">@item.Name</h1>
+                </div>
+            }
         }
     }
+
 </div>
 
 <div class="divider-container">
