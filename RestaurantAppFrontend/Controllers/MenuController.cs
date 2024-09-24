@@ -23,5 +23,16 @@ namespace RestaurantAppFrontend.Controllers
 
             return View(menuItems);
         }
+
+        public async Task<IActionResult> MenuAdmin()
+        {
+            var response = await _httpClient.GetAsync($"{_baseUri}getallmenuitems");
+
+            var json = await response.Content.ReadAsStringAsync();
+
+            var menuItems = JsonConvert.DeserializeObject<List<MenuItem>>(json);
+
+            return View(menuItems);
+        }
     }
 }
