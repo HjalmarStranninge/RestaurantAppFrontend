@@ -75,21 +75,21 @@ body {
 }
 
 
-.header-background::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60vh;
-    background-color: rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}
+    .header-background::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 60vh;
+        background-color: rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
 
-.header-background>* {
-    position: relative;
-    z-index: 2;
-}
+    .header-background > * {
+        position: relative;
+        z-index: 2;
+    }
 
 
 .main-title {
@@ -118,18 +118,18 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.text-center p {
-    font-size: 1.5rem;
-    font-style: italic;
-}
+    .text-center p {
+        font-size: 1.5rem;
+        font-style: italic;
+    }
 
 .navbar-nav .nav-link {
     transition: color 0.3s ease, background-color 0.3s ease;
 }
 
-.navbar-nav .nav-link:hover {
-    color: #808080 !important;
-}
+    .navbar-nav .nav-link:hover {
+        color: #808080 !important;
+    }
 
 .opening-hours-container {
     display: flex;
@@ -361,36 +361,36 @@ body {
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-.dark-mode .menu-card {
-    background-color: black;
-    color: white;
-    transition: background-color 0.5s ease, color 0.5s ease;
-}
+    .dark-mode .menu-card {
+        background-color: black;
+        color: white;
+        transition: background-color 0.5s ease, color 0.5s ease;
+    }
 
-.dark-mode .welcome-header,
-.dark-mode .opening-hours-header,
-.dark-mode .info-header,
-.dark-mode .container {
-    color: white;
-    transition: color 0.5s ease;
-}
+    .dark-mode .welcome-header,
+    .dark-mode .opening-hours-header,
+    .dark-mode .info-header,
+    .dark-mode .container {
+        color: white;
+        transition: color 0.5s ease;
+    }
 
-.dark-mode .menu-container {
-    background-color: black;
-    color: white;
-    transition: background-color 0.5s ease, color 0.5s ease;
-}
+    .dark-mode .menu-container {
+        background-color: black;
+        color: white;
+        transition: background-color 0.5s ease, color 0.5s ease;
+    }
 
-.dark-mode .menu-header-text {
-    color: white;
-    transition: color 0.5s ease;
-}
+    .dark-mode .menu-header-text {
+        color: white;
+        transition: color 0.5s ease;
+    }
 
 
-.dark-mode .opening-hours-secondary {
-    color: lightgray !important;
-    transition: color 0.5s ease;
-}
+    .dark-mode .opening-hours-secondary {
+        color: lightgray !important;
+        transition: color 0.5s ease;
+    }
 
 .menu-page .main-navbar {
     background-color: black;
@@ -427,7 +427,7 @@ body {
     transition: background-color 0.5s ease;
 }
 
-/* Admin styling*/
+/* Admin styling */
 .admin-wrapper {
     display: flex;
 }
@@ -438,27 +438,99 @@ body {
     top: 0;
     left: 0;
     width: 250px;
-    padding:0;
-    background-color: #E5E5E5;
-    
+    padding: 0;
+    background-color: #353535;
 }
 
 .admin-navbar {
-    margin-left: 250px;
+    position: fixed;
+    top: 0;
+    left: 250px; /* Adjust this if the sidebar width changes */
+    width: calc(100% - 250px);
     background-color: #14213D;
+    z-index: 1000; /* Ensure it stays above other content */
 }
 
-.logout-button{
-    margin-right:200px;
+.logout-button {
+
 }
 
-.sidebar-header{
-    height:152px;
+.sidebar-header-container {
+    height: 152px;
     width: 100%;
-    background-color: black;
+    background-color: #353535;
 }
 
-.sidebar-item{
+.sidebar-header {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-avatar {
+    width: 25%;
+    height: auto;
+    margin: 0 1rem 1rem 0.5rem;
+}
+
+.sidebar-item {
+    margin: 0;
+}
+
+.sidebar-button {
+    color: white;
+}
+
+.divider-sidebar {
+    margin-top: 0;
+}
+
+.user-name {
+    color: white;
+}
+
+.user-role {
+    color: lightgray;
+}
+
+.admin-background {
+    margin-top: 60px; 
+    margin-left: 250px; 
+    width: calc(100% - 250px);
+    height: calc(100vh - 60px); 
+    overflow-y: auto;
+    background-color: #e5e5e5;
+}
+
+.admin-container {
+    height: 95%;
+    width: 95%;
+    margin: 2rem 1rem 0.5rem;
+    background-color: white;
+    overflow-y: auto; 
+    overflow-x:hidden;
+}
+
+.menu-list-item-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    width: 70vw;
+    padding: 1rem 2rem 1rem 0;
+    border-bottom: solid gray 1px;
+}
+
+.list-container{
+    list-style:none;
+}
+
+.menu-list-item-title{
+    padding:0;
     margin:0;
 }
 
+.admin-edit-btn {
+    padding: 0.5rem 0.8rem;
+    border-radius: 5px;
+}
