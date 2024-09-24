@@ -1,6 +1,6 @@
 ﻿@{
     var isMenuPage = ViewData["Title"] == "Menu" || ViewData["Title"] == "Admin";
-    var isAdminPage = ViewData["Title"] == "Admin"; // Add a flag for admin page
+    var isAdminPage = ViewData["Title"] == "Admin" || ViewData["Title"] == "Admin - Menu"; 
 }
 
 <!DOCTYPE html>
@@ -18,13 +18,13 @@
 <body>
     <header>
         <nav id="main-navbar"
-            class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark main-navbar @(isMenuPage ? "menu-navbar" : "") @(isAdminPage ? "admin-navbar" : "")">
+             class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark main-navbar @(isMenuPage ? "menu-navbar" : "") @(isAdminPage ? "admin-navbar" : "")">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     <img src="~/Resources/logo.png" alt="Byte" style="height: 50px;" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -35,10 +35,14 @@
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
                                 <a class="btn btn-secondary logout-button" asp-area="" asp-controller="Home"
-                                    asp-action="Index">Log
-                                    Out</a>
+                                   asp-action="Index">
+                                    Log
+                                    Out
+                                </a>
                             </li>
                         </ul>
+
+
                     }
 
                     else
@@ -50,17 +54,56 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-controller="Home"
-                                    asp-action="Privacy">Bookings</a>
+                                   asp-action="Privacy">Bookings</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-controller="Menu" asp-action="Index">Menu</a>
                             </li>
                         </ul>
                     }
+
                 </div>
             </div>
         </nav>
     </header>
+
+    @if (isAdminPage)
+    {
+        <!-- Admin-specific siderbar -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2 admin-sidebar">
+
+                    <div class="sidebar-header-container">
+                        <div class="sidebar-header">
+
+                            <img class="sidebar-avatar" src="@Url.Content("~/Resources/profile-picture.png")" alt="Profile picture" />
+
+                            <div class="sidebar-name">
+                                <h4 class="user-name">User Name</h4>
+                                <p class="user-role">Administrator</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="divider-container divider-sidebar">
+                        <div class="divider "></div>
+                    </div>
+
+                    <!-- Sidebar content -->
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item sidebar-item">
+                            <a class="nav-link sidebar-button" asp-controller="Menu" asp-action="MenuAdmin">Manage Menu</a>
+                        </li>
+                        <li class="nav-item sidebar-item">
+                            <a class="nav-link sidebar-button" asp-controller="Admin" asp-action="ManageBookings">Manage Bookings</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    }
 
     <main role="main" class="desc-wrapper @(isAdminPage ? "admin-wrapper" : "")">
         @RenderBody()
@@ -72,7 +115,7 @@
             <div class="footer-wrapper">
                 <div class="container">
                     &copy; 2024 - Byte - <a class="privacy" asp-area="" asp-controller="Home"
-                        asp-action="Privacy">Privacy</a>
+                                            asp-action="Privacy">Privacy</a>
                 </div>
                 <a asp-controller="Admin" asp-action="Index" class="btn btn-light admin-button">Admin Login</a>
             </div>
