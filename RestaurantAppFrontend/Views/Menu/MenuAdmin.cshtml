@@ -1,0 +1,23 @@
+﻿@model List<MenuItem>;
+
+@{
+    ViewData["Title"] = "Admin - Menu";
+}
+
+<div class="admin-background">
+    <div class="admin-container">
+        <div class="menu-list-container">
+            <ul class="list-container">
+                @foreach (var item in Model)
+                {
+                    <li class="list-item">
+                        <div class="menu-list-item-wrapper">
+                            <p class="menu-list-item-title">@item.Name</p>
+                            <button class="btn btn-warning admin-edit-btn">Edit</button>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
