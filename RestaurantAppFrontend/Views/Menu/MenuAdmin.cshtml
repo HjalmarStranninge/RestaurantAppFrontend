@@ -16,7 +16,7 @@
                 <option value="Dessert">Dessert</option>
                 <option value="Cocktail">Drink</option>
             </select>
-            <button class="btn btn-info admin-add-btn">Add New Item</button>
+            <button class="btn btn-info admin-add-btn" data-bs-toggle="modal" data-bs-target="#addEditModal" onclick="openAddModal()">Add New Item</button>
         </div>
         <div class="menu-list-container">
             <ul class="list-container" id="menuList">
@@ -25,11 +25,31 @@
                     <li class="list-item" data-category="@GetCategory(item)">
                         <div class="menu-list-item-wrapper">
                             <p class="menu-list-item-title">@item.Name</p>
-                            <button class="btn btn-warning admin-edit-btn">Edit</button>
+                            <button class="btn btn-warning admin-edit-btn" data-bs-toggle="modal" data-bs-target="#addEditModal" onclick="openEditModal(@item.Id)">Edit</button>
+                            <form asp-action="DeleteMenuItem" asp-controller="Menu" method="post" style="display:inline;">
+                                <input type="hidden" name="_method" value="DELETE" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <button type="submit" class="btn btn-danger admin-delete-btn">Delete</button>
+                            </form>
                         </div>
                     </li>
                 }
             </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addEditModal" tabindex="-1" aria-labelledby="addEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addEditModalLabel">Add/Edit Menu Item</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="modalContent"></div>
+            </div>
         </div>
     </div>
 </div>
@@ -54,6 +74,24 @@
                 item.style.display = 'none';
             }
         });
+    }
+
+    function openAddModal() {
+        fetch('@Url.Action("AddMenuItemForm", "Menu")')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('modalContent').innerHTML = data;
+                document.getElementById('addEditModalLabel').innerText = 'Add Menu Item';
+            });
+    }
+
+    function openEditModal(id) {
+        fetch('@Url.Action("EditMenuItemForm", "Menu")?id=' + id)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('modalContent').innerHTML = data;
+                document.getElementById('addEditModalLabel').innerText = 'Edit Menu Item';
+            });
     }
 </script>
 

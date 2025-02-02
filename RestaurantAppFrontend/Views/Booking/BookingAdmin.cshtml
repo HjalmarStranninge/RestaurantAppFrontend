@@ -1,0 +1,91 @@
+﻿@model List<RestaurantAppFrontend.Models.Booking>;
+
+@{
+    ViewData["Title"] = "Admin - Bookings";
+}
+
+<div class="admin-background">
+    <div class="admin-container">
+        <div class="admin-toolbar">
+            <input type="text" class="form-control search-bar toolbar-item" placeholder="Search by Customer ID" id="searchInput">
+            <button class="btn btn-info admin-add-btn" data-bs-toggle="modal" data-bs-target="#addEditModal" onclick="openAddModal()">Add New Booking</button>
+        </div>
+        <div class="booking-list-container">
+            <ul class="list-container" id="bookingList">
+                @foreach (var booking in Model)
+
+                {
+                    <li class="list-item" data-customer-id="@booking.CustomerId">
+                        <div class="booking-list-item-wrapper">
+                            <p class="booking-list-item-title">Booking ID: @booking.Id</p>
+                            <p>Party Size: @booking.PartySize</p>
+                            <p>Start: @booking.StartDateTime</p>
+                            <p>End: @booking.EndDateTime</p>
+                            <p>Customer ID: @booking.CustomerId</p>
+                            <p>Table ID: @booking.TableId</p>
+                            <button class="btn btn-warning admin-edit-btn" data-bs-toggle="modal" data-bs-target="#addEditModal" onclick="openEditModal(@booking.Id)">Edit</button>
+                            <form asp-action="DeleteBooking" asp-controller="Booking" method="post" style="display:inline;">
+                                <input type="hidden" name="_method" value="DELETE" />
+                                <input type="hidden" name="id" value="@booking.Id" />
+                                <button type="submit" class="btn btn-danger admin-delete-btn">Delete</button>
+                            </form>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addEditModal" tabindex="-1" aria-labelledby="addEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addEditModalLabel">Add/Edit Booking</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="modalContent"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('searchInput').addEventListener('input', filterBookings);
+
+    function filterBookings() {
+        var filter = document.getElementById('searchInput').value.toLowerCase();
+        var bookingList = document.getElementById('bookingList');
+        var items = bookingList.getElementsByClassName('list-item');
+
+        Array.from(items).forEach(function (item) {
+            var customerId = item.getAttribute('data-customer-id').toLowerCase();
+
+            if (customerId.includes(filter) || filter === '') {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    function openAddModal() {
+        fetch('@Url.Action("AddBookingForm", "Booking")')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('modalContent').innerHTML = data;
+                document.getElementById('addEditModalLabel').innerText = 'Add Booking';
+            });
+    }
+
+    function openEditModal(id) {
+        fetch('@Url.Action("EditBookingForm", "Booking")?id=' + id)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('modalContent').innerHTML = data;
+                document.getElementById('addEditModalLabel').innerText = 'Edit Booking';
+            });
+    }
+</script>

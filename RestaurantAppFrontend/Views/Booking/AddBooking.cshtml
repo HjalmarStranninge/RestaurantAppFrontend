@@ -1,0 +1,30 @@
+﻿@model RestaurantAppFrontend.Models.CreateBooking
+
+<form asp-action="@ViewBag.Action" asp-controller="Booking" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="PartySize" class="control-label"></label>
+        <input asp-for="PartySize" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="RequestedDateTime" class="control-label"></label>
+        <input asp-for="RequestedDateTime" class="form-control" type="datetime-local" />
+    </div>
+    <div class="form-group">
+        <label asp-for="CustomerFirstName" class="control-label"></label>
+        <input asp-for="CustomerFirstName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="CustomerLastName" class="control-label"></label>
+        <input asp-for="CustomerLastName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="CustomerEmail" class="control-label"></label>
+        <input asp-for="CustomerEmail" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="CustomerPhone" class="control-label"></label>
+        <input asp-for="CustomerPhone" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

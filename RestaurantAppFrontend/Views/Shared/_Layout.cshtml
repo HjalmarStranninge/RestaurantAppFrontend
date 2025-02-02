@@ -1,6 +1,6 @@
 ﻿@{
     var isMenuPage = ViewData["Title"] == "Menu" || ViewData["Title"] == "Admin";
-    var isAdminPage = ViewData["Title"] == "Admin" || ViewData["Title"] == "Admin - Menu"; 
+    var isAdminPage = ViewData["Title"] == "Admin" || ViewData["Title"] == "Admin - Menu" || ViewData["Title"] == "Admin - Bookings";
 }
 
 <!DOCTYPE html>
@@ -9,6 +9,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Explore our delicious menu featuring appetizers, main courses, desserts, and cocktails at The Byte Experience.">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="menu, appetizers, main courses, cocktails, desserts, The Byte Experience">
+    <meta property="og:title" content="The Byte Experience Menu">
+    <meta property="og:description" content="Discover our menu with a variety of delicious options including appetizers, main courses, cocktails, and desserts.">
+    <meta property="og:image" content="URL to a relevant image">
     <title>@ViewData["Title"] - Byte</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -41,10 +47,7 @@
                                 </a>
                             </li>
                         </ul>
-
-
                     }
-
                     else
                     {
                         <!-- Regular navbar content -->
@@ -61,7 +64,6 @@
                             </li>
                         </ul>
                     }
-
                 </div>
             </div>
         </nav>
@@ -69,37 +71,31 @@
 
     @if (isAdminPage)
     {
-        <!-- Admin-specific siderbar -->
+        <!-- Admin-specific sidebar -->
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-2 admin-sidebar">
-
                     <div class="sidebar-header-container">
                         <div class="sidebar-header">
-
                             <img class="sidebar-avatar" src="@Url.Content("~/Resources/profile-picture.png")" alt="Profile picture" />
-
                             <div class="sidebar-name">
                                 <h4 class="user-name">User Name</h4>
                                 <p class="user-role">Administrator</p>
                             </div>
                         </div>
                     </div>
-
                     <div class="divider-container divider-sidebar">
                         <div class="divider "></div>
                     </div>
-
                     <!-- Sidebar content -->
                     <ul class="nav nav-pills flex-column">
                         <li class="nav-item sidebar-item">
                             <a class="nav-link sidebar-button" asp-controller="Menu" asp-action="MenuAdmin">Manage Menu</a>
                         </li>
                         <li class="nav-item sidebar-item">
-                            <a class="nav-link sidebar-button" asp-controller="Admin" asp-action="ManageBookings">Manage Bookings</a>
+                            <a class="nav-link sidebar-button" asp-controller="Booking" asp-action="BookingAdmin">Manage Bookings</a>
                         </li>
                     </ul>
-
                 </div>
             </div>
         </div>
@@ -117,14 +113,62 @@
                     &copy; 2024 - Byte - <a class="privacy" asp-area="" asp-controller="Home"
                                             asp-action="Privacy">Privacy</a>
                 </div>
-                <a asp-controller="Admin" asp-action="Index" class="btn btn-light admin-button">Admin Login</a>
+                <button class="btn btn-light admin-button" data-bs-toggle="modal" data-bs-target="#adminLoginModal">Admin Login</button>
             </div>
         </footer>
     }
 
+    <!-- Admin Login Modal -->
+    <div class="modal fade" id="adminLoginModal" tabindex="-1" aria-labelledby="adminLoginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="adminLoginModalLabel">Admin Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="adminLoginForm">
+                        <div class="mb-3">
+                            <label for="adminUsername" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="adminUsername" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="adminPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="adminPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                    <div id="loginError" class="text-danger mt-2" style="display: none;">Invalid credentials. Please try again.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        $(document).ready(function () {
+            $('#adminLoginForm').on('submit', function (e) {
+                e.preventDefault();
+                const username = $('#adminUsername').val();
+                const password = $('#adminPassword').val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("AdminLogin", "Home")',
+                    data: { username: username, password: password },
+                    success: function (response) {
+                        if (response.success) {
+                            window.location.href = '@Url.Action("Index", "Admin")';
+                        } else {
+                            $('#loginError').show();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 
